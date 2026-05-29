@@ -1,15 +1,11 @@
 {
-  "..\\node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts": {
-    "id": "..\\node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts",
+  "app/mapa/page.tsx -> ./components/MapView": {
+    "id": 8715,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_next_dist_client_dev_noop-turbopack-hmr_js.js"
-    ]
-  },
-  "app\\mapa\\page.tsx -> ./components/MapView": {
-    "id": "app\\mapa\\page.tsx -> ./components/MapView",
-    "files": [
-      "static/css/_app-pages-browser_src_app_mapa_components_MapView_tsx.css",
-      "static/chunks/_app-pages-browser_src_app_mapa_components_MapView_tsx.js"
+      "static/css/1de76be520b4de19.css",
+      "static/chunks/ed48eaa7.d6e6ad8b2c479eb8.js",
+      "static/chunks/594.9da1540165bafe43.js",
+      "static/chunks/715.6e8466661c322174.js"
     ]
   }
 }

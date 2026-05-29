@@ -1,4 +1,4 @@
-// File: C:\Users\Unimagdalena\Documents\GitHub\AgroHackatonApp\agro-trace-frontend\src\app\productores\page.tsx
+// File: /workspaces/FrontEndHackaton/src/app/productores/page.tsx
 import * as entry from '../../../../src/app/productores/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
