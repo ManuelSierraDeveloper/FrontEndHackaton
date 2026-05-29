@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, Loader2, CloudOff } from "lucide-react";
 import { ProductCard } from "@/components/product/product-card";
 import { CATEGORY_ICONS } from "@/components/ui/category-icons";
 import { ProductDetailModal } from "@/components/product/product-detail-modal";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import { useCart } from "@/hooks/useCart";
+import { usePublicProducts } from "@/hooks/usePublicProducts";
 import type { Product } from "@/types/product";
 
 const allProducts: Product[] = [
@@ -361,25 +362,33 @@ const categories = [
 export default function TiendaPage() {
   const { selectedProduct, isOpen, openProductDetail, closeProductDetail } = useProductDetail();
   const { addToCart, openCart } = useCart();
+  const { products: apiProducts, loading, error, total: apiTotal } = usePublicProducts();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  // Merge API products with mock data (API first, mocks as fallback)
+  const mergedProducts = useMemo(() => {
+    const apiIds = new Set(apiProducts.map(p => p.id));
+    const mocksNotInApi = allProducts.filter(p => !apiIds.has(p.id));
+    return [...apiProducts, ...mocksNotInApi];
+  }, [apiProducts]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     for (const cat of categories) {
-      counts[cat] = allProducts.filter((p) => p.category === cat).length;
+      counts[cat] = mergedProducts.filter((p) => p.category === cat).length;
     }
     return counts;
-  }, []);
+  }, [mergedProducts]);
 
-  const filteredProducts = allProducts.filter((p) => {
+  const filteredProducts = mergedProducts.filter((p) => {
     const matchesSearch = !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = !selectedCategory || p.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   const relatedProducts = selectedProduct
-    ? allProducts.filter((p) => selectedProduct.relatedProducts.includes(p.id))
+    ? mergedProducts.filter((p) => selectedProduct.relatedProducts.includes(p.id))
     : [];
 
   const handleAddToCart = (product: Product, quantity = 1) => {
@@ -448,12 +457,31 @@ export default function TiendaPage() {
             </h2>
             <p className="text-sm text-gray-500 mt-0.5">
               {filteredProducts.length} productos encontrados
+              {apiTotal > 0 && (
+                <span className="text-[#6D9E13] ml-1">
+                  ({apiTotal} desde la red de productores)
+                </span>
+              )}
             </p>
           </div>
-          <button className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg hover:border-[#6D9E13] hover:text-[#6D9E13] transition-colors">
-            <Filter className="w-4 h-4" />
-            Filtrar
-          </button>
+          <div className="flex items-center gap-2">
+            {loading && (
+              <span className="flex items-center gap-1 text-xs text-gray-400">
+                <Loader2 className="w-3 h-3 animate-spin" />
+                Conectando...
+              </span>
+            )}
+            {error && (
+              <span className="flex items-center gap-1 text-xs text-amber-600" title={error}>
+                <CloudOff className="w-3 h-3" />
+                Modo local
+              </span>
+            )}
+            <button className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg hover:border-[#6D9E13] hover:text-[#6D9E13] transition-colors">
+              <Filter className="w-4 h-4" />
+              Filtrar
+            </button>
+          </div>
         </div>
 
         {filteredProducts.length > 0 ? (
