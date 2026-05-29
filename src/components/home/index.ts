@@ -1,0 +1,10 @@
+export { ContextoSection } from "./contexto-section";
+export { ProblemaSection } from "./problema-section";
+export { SolucionSection } from "./solucion-section";
+export { TecnicaSection } from "./tecnica-section";
+export { ImpactoSection } from "./impacto-section";
+export { PieChart } from "./charts/pie-chart";
+export { BarChart } from "./charts/bar-chart";
+export { LineChart } from "./charts/line-chart";
+export { TechInfographic } from "./charts/tech-infographic";
+export { RoleComparison } from "./charts/role-comparison";

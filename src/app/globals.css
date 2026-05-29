@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-verde-agro: #2D8B4E;
+  --color-verde-oscuro: #1B5E34;
+  --color-verde-claro: #E8F5E9;
+  --color-azul-profundo: #1565C0;
+  --color-azul-claro: #E3F2FD;
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error: #F44336;
+  --color-info: #2196F3;
+
+  --color-baloo-primary: #6D9E13;
+  --color-baloo-secondary: #9FC238;
+  --color-baloo-gold: #82640B;
+  --color-baloo-cream: #DEDB8D;
+  --color-baloo-bg: #FFFAF3;
+
+  --color-fairtrade-bg: #FFF3E0;
+  --color-fairtrade-text: #E65100;
+  --color-fairtrade-border: #FFCC80;
+
+  --color-rainforest-bg: #E8F5E9;
+  --color-rainforest-text: #2E7D32;
+  --color-rainforest-border: #A5D6A7;
+
+  --color-organic-bg: #E3F2FD;
+  --color-organic-text: #1565C0;
+  --color-organic-border: #90CAF9;
+
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Baloo', 'Poppins', sans-serif;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.12);
+  --shadow-popup: 0 4px 16px rgba(0,0,0,0.15);
+
+  --max-width-container: 1280px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--color-verde-agro);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-verde-oscuro);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--color-verde-agro);
+    color: var(--color-verde-agro);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-verde-claro);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-azul-profundo);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-ghost:hover {
+    text-decoration: underline;
+  }
+
+  .btn-danger {
+    background-color: var(--color-error);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .card {
+    background-color: white;
+    border: 1px solid #EEEEEE;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.2s ease;
+  }
+
+  .card-hover:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--color-verde-agro);
+  }
+}
